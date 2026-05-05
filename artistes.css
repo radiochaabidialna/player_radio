@@ -1,0 +1,119 @@
+/* ── ARTISTES PAGE — Thème Clair ── */
+
+.artists-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:20px; }
+.artists-grid.list-view { grid-template-columns:1fr; gap:10px; }
+
+/* ─── CARTE ARTISTE ─── */
+.artist-card {
+  background:var(--card); border:1.5px solid var(--b1);
+  border-radius:var(--r-lg); overflow:hidden; cursor:pointer;
+  box-shadow:var(--sh-sm); transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.artist-card:hover { transform:translateY(-5px); box-shadow:var(--sh); border-color:var(--amber); }
+.artist-card.playing { border-color:var(--amber)!important; box-shadow:0 0 0 3px var(--amber-ring)!important; }
+
+.artist-thumb { position:relative; aspect-ratio:1/1; overflow:hidden; background:var(--bg-2); }
+.artist-thumb img { width:100%; height:100%; object-fit:cover; object-position:top center; transition:transform .4s; }
+.artist-card:hover .artist-thumb img { transform:scale(1.07); }
+.artist-thumb-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(30,8,0,.65) 0%,transparent 55%); }
+.artist-cat-badge {
+  position:absolute; top:10px; left:10px;
+  font-size:.58rem; font-weight:800; text-transform:uppercase; letter-spacing:.8px;
+  padding:3px 10px; border-radius:20px;
+  background:var(--amber); color:#fff;
+}
+.artist-play-btn {
+  position:absolute; bottom:10px; right:10px;
+  width:38px; height:38px; border-radius:50%;
+  background:var(--amber); border:none; color:#fff; font-size:.85rem;
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transform:scale(.8); transition:opacity .18s,transform .18s;
+  box-shadow:var(--sh-amb);
+}
+.artist-card:hover .artist-play-btn { opacity:1; transform:scale(1); }
+
+.artist-body { padding:13px 15px 15px; }
+.artist-name { font-family:"Cinzel",serif; font-size:.9rem; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:7px; color:var(--t1); }
+.artist-foot { display:flex; justify-content:space-between; align-items:center; }
+.artist-foot-stats { display:flex; gap:4px; }
+
+.a-stat-btn {
+  display:flex; align-items:center; gap:4px; font-size:.68rem;
+  padding:3px 8px; border-radius:7px; border:1.5px solid var(--b1);
+  background:var(--bg); color:var(--t3); font-family:"Nunito",sans-serif; cursor:pointer;
+  transition:all .15s;
+}
+.a-stat-btn:hover { border-color:var(--amber); color:var(--amber); background:var(--amber-bg); }
+.a-stat-btn.liked  { color:var(--red);  border-color:rgba(192,57,43,.3); background:var(--red-bg); }
+.a-stat-btn.viewed { color:var(--teal); border-color:rgba(0,122,110,.3); background:var(--teal-bg); }
+
+/* LIST VIEW */
+.artists-grid.list-view .artist-card { display:flex; align-items:center; border-radius:var(--r); padding:10px; }
+.artists-grid.list-view .artist-card:hover { transform:translateX(5px) translateY(0); }
+.artists-grid.list-view .artist-thumb { width:64px; height:64px; aspect-ratio:auto; border-radius:10px; flex-shrink:0; }
+.artists-grid.list-view .artist-thumb-overlay { display:none; }
+.artists-grid.list-view .artist-play-btn { position:static; opacity:1; transform:none; flex-shrink:0; width:32px; height:32px; margin-left:8px; }
+.artists-grid.list-view .artist-body { flex:1; padding:0 12px; min-width:0; }
+.artists-grid.list-view .artist-cat-badge { position:static; display:inline-block; margin-bottom:3px; }
+
+/* ════════════════════════════════════
+   MODAL ARTISTE
+════════════════════════════════════ */
+#artistModalBox .modal-close {
+  position:absolute; top:-2px; right:2px; z-index:10;
+  width:30px; height:30px; border-radius:50%;
+  background:var(--amber); border:2px solid var(--card);
+  color:#fff; font-size:.82rem;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; box-shadow:var(--sh-amb); transition:background .15s;
+}
+#artistModalBox .modal-close:hover { background:var(--amber-h); }
+
+.am-header { display:flex; align-items:flex-start; gap:16px; padding:22px 20px 16px; border-bottom:1.5px solid var(--b2); }
+.am-img { width:90px; height:90px; border-radius:var(--r); flex-shrink:0; object-fit:cover; object-position:top center; border:2px solid var(--amber); background:var(--bg-2); }
+.am-meta { flex:1; min-width:0; }
+.am-cat { display:inline-flex; align-items:center; gap:5px; font-size:.6rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; padding:2px 9px; border-radius:8px; background:var(--amber-bg); border:1px solid rgba(224,120,0,.3); color:var(--amber); margin-bottom:7px; }
+.am-name { font-family:"Cinzel",serif; font-size:1.3rem; font-weight:700; color:var(--t1); line-height:1.2; margin-bottom:10px; }
+.am-chips { display:flex; flex-wrap:wrap; gap:6px; }
+.am-chip { display:flex; align-items:center; gap:5px; font-size:.74rem; padding:4px 11px; border-radius:9px; border:1.5px solid var(--b1); background:var(--bg); color:var(--t2); font-family:"Nunito",sans-serif; cursor:pointer; transition:all .15s; }
+.am-chip:hover { border-color:var(--amber); color:var(--amber); background:var(--amber-bg); }
+.am-chip.noclick { cursor:default; }
+.am-chip.noclick:hover { border-color:var(--b1); color:var(--t2); background:var(--bg); }
+.am-chip.liked  { color:var(--red);  border-color:rgba(192,57,43,.3); background:var(--red-bg); }
+.am-chip.viewed { color:var(--teal); border-color:rgba(0,122,110,.3); background:var(--teal-bg); }
+
+.am-bio { padding:14px 20px; font-size:.83rem; color:var(--t2); line-height:1.7; border-bottom:1.5px solid var(--b2); background:var(--bg); }
+
+.am-tabs { display:flex; border-bottom:1.5px solid var(--b2); background:var(--bg); }
+.am-tab { flex:1; padding:11px 8px; text-align:center; font-size:.76rem; font-weight:700; color:var(--t3); background:none; border:none; border-bottom:3px solid transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; transition:color .15s,border-color .15s; }
+.am-tab:hover { color:var(--amber); }
+.am-tab.active { color:var(--amber); border-bottom-color:var(--amber); }
+.am-tab-count { display:inline-flex; align-items:center; justify-content:center; min-width:18px; height:18px; padding:0 5px; border-radius:9px; background:var(--amber-bg); border:1px solid rgba(224,120,0,.3); font-size:.6rem; color:var(--amber); }
+
+.am-tab-panel { display:none; padding:12px 16px 20px; }
+.am-tab-panel.active { display:block; }
+
+.am-row { display:grid; gap:9px; align-items:center; padding:9px 10px; border-radius:10px; cursor:pointer; border:1.5px solid transparent; margin-bottom:4px; transition:background .15s,border-color .15s; }
+.am-row-song,.am-row-iv,.am-row-em { grid-template-columns:22px 44px 1fr auto auto; }
+.am-row:hover  { background:var(--amber-bg); border-color:rgba(224,120,0,.25); }
+.am-row.active { background:var(--amber-bg); border-color:var(--amber); }
+
+.am-rnum  { font-size:.68rem; color:var(--t3); text-align:right; }
+.am-row.active .am-rnum { color:var(--amber); font-weight:700; }
+.am-em-num { font-family:"Cinzel",serif; font-size:.65rem; font-weight:700; color:var(--teal); text-align:right; white-space:nowrap; }
+.am-rimg  { width:44px; height:44px; border-radius:8px; object-fit:cover; background:var(--bg-2); }
+.am-rinfo { min-width:0; }
+.am-rtitle { font-size:.83rem; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:var(--t1); }
+.am-rsub   { font-size:.64rem; color:var(--t3); margin-top:1px; }
+.am-rviews { font-size:.65rem; color:var(--t3); white-space:nowrap; display:flex; align-items:center; gap:3px; }
+.am-rplay  { width:30px; height:30px; border-radius:50%; flex-shrink:0; background:var(--amber-bg); border:1.5px solid rgba(224,120,0,.3); color:var(--amber); font-size:.7rem; display:flex; align-items:center; justify-content:center; transition:background .15s,color .15s; }
+.am-row:hover .am-rplay,.am-row.active .am-rplay { background:var(--amber); color:#fff; border-color:var(--amber); }
+
+.am-empty   { text-align:center; padding:20px; color:var(--t3); font-size:.82rem; font-style:italic; }
+.am-loading { text-align:center; padding:24px; color:var(--t3); font-size:.85rem; }
+
+@media(max-width:600px){
+  .artists-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .am-row-song,.am-row-iv,.am-row-em{grid-template-columns:18px 36px 1fr auto;}
+  .am-rviews{display:none;}
+}

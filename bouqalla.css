@@ -1,0 +1,172 @@
+/* ── BOUQALLA PAGE — Thème Clair, 3 couleurs distinctes ── */
+
+/* Hero spécifique */
+.page-hero-bouqalla { background: linear-gradient(145deg, #c85000 0%, #e07800 50%, #f59e0b 100%); }
+
+/* Lang indicator */
+.lang-indicator { font-size:.72rem; color:var(--amber); margin-bottom:20px; display:flex; align-items:center; gap:6px; min-height:20px; }
+.lang-indicator i { opacity:.7; }
+
+/* ── GRILLE ── */
+.bouqalla-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; }
+.bouqalla-grid.table-view { display:block; }
+
+/* ════════════════════════════════
+   CARTE BOUQALLA
+════════════════════════════════ */
+.bq-card {
+  background:var(--card); border:1.5px solid var(--b1);
+  border-radius:var(--r-lg); padding:20px; cursor:pointer; position:relative; overflow:hidden;
+  box-shadow:var(--sh-sm); transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.bq-card:hover { transform:translateY(-4px); box-shadow:var(--sh); border-color:var(--amber); }
+
+/* Guillemet décoratif */
+.bq-card::before {
+  content:'\201C';
+  position:absolute; top:-14px; left:12px;
+  font-size:6rem; line-height:1;
+  color:var(--amber); opacity:.06;
+  font-family:Georgia,serif; pointer-events:none;
+}
+
+.bq-num { position:absolute; top:12px; right:14px; font-family:"Cinzel",serif; font-size:.62rem; font-weight:700; color:var(--t3); letter-spacing:1px; }
+
+/* ──── ARABE : or ambre ──── */
+.bq-arabe {
+  font-family:"Scheherazade New","Amiri",serif;
+  font-size:1.4rem; font-weight:700;
+  color:#b35c00;                      /* ambre brun riche */
+  line-height:1.9; text-align:right; direction:rtl;
+  margin-bottom:10px; letter-spacing:.5px;
+  padding:8px 12px;
+  background:#fff8ed;
+  border-right:3px solid var(--amber);
+  border-radius:8px;
+}
+
+.bq-sep { width:40px; height:1px; background:linear-gradient(90deg,transparent,var(--b1),transparent); margin:0 auto 10px; }
+
+/* ──── PHONÉTIQUE : teal ──── */
+.bq-phonetic {
+  font-size:.83rem; font-style:italic;
+  color:#006b5e;                      /* teal profond */
+  text-align:center; line-height:1.6; margin-bottom:8px;
+  padding:5px 10px;
+  background:#edf9f7;
+  border-radius:8px;
+}
+
+/* ──── FRANÇAIS : violet/mauve ──── */
+.bq-fr {
+  font-size:.83rem;
+  color:#6b21a8;                      /* violet profond */
+  text-align:center; line-height:1.6;
+  padding:5px 10px;
+  background:#f7f0ff;
+  border-radius:8px;
+  border-top:1px solid rgba(107,33,168,.12);
+  margin-top:6px;
+}
+.bq-fr::before { content:'"'; color:rgba(107,33,168,.4); margin-right:2px; }
+.bq-fr::after  { content:'"'; color:rgba(107,33,168,.4); margin-left:2px; }
+
+/* ════════════════════════════════
+   VUE TABLEAU
+════════════════════════════════ */
+.bq-table { width:100%; border-collapse:collapse; font-size:.82rem; }
+.bq-table th {
+  font-family:"Cinzel",serif; font-size:.62rem; text-transform:uppercase;
+  letter-spacing:1.5px; font-weight:800;
+  padding:11px 12px; text-align:left;
+  border-bottom:2px solid var(--b1);
+  background:var(--bg-2);
+}
+.bq-table th.col-ar { text-align:right; color:#b35c00; }
+.bq-table th.col-ph { color:#006b5e; }
+.bq-table th.col-fr { color:#6b21a8; }
+.bq-table td { padding:12px; vertical-align:top; border-bottom:1px solid var(--b2); transition:background .15s; }
+.bq-table tr:hover td { background:var(--amber-bg); cursor:pointer; }
+.bq-table .td-num { font-family:"Cinzel",serif; font-size:.7rem; color:var(--t3); width:40px; font-weight:700; }
+.bq-table .td-ar  { font-family:"Scheherazade New",serif; font-size:1.1rem; color:#b35c00; text-align:right; direction:rtl; line-height:1.7; font-weight:700; }
+.bq-table .td-ph  { font-style:italic; color:#006b5e; line-height:1.6; }
+.bq-table .td-fr  { color:#6b21a8; line-height:1.6; }
+
+/* ════════════════════════════════
+   MODAL BOUQALLA
+════════════════════════════════ */
+.modal-overlay {
+  position:fixed; inset:0; z-index:800;
+  background:rgba(30,8,0,.55); backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center; padding:20px;
+  opacity:0; visibility:hidden; transition:opacity .25s,visibility .25s;
+}
+.modal-overlay.open { opacity:1; visibility:visible; }
+.modal {
+  background:var(--card); border:2px solid var(--amber);
+  border-radius:var(--r-lg); max-width:560px; width:100%; max-height:88vh; overflow-y:auto;
+  box-shadow:var(--sh-lg);
+  transform:translateY(20px) scale(.97); transition:transform .25s; position:relative;
+}
+.modal-overlay.open .modal { transform:none; }
+.modal-close {
+  position:absolute; top:2px; right:2px; z-index:2;
+  width:30px; height:30px; border-radius:50%;
+  background:var(--amber); border:2px solid var(--card);
+  color:#fff; font-size:.82rem;
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  box-shadow:var(--sh-amb); transition:background .15s;
+}
+.modal-close:hover { background:var(--amber-h); }
+
+.bm-wrap { padding:32px 28px 28px; }
+.bm-num  { font-family:"Cinzel",serif; font-size:.7rem; color:var(--t3); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:6px; }
+
+/* Arabe GRAND */
+.bm-arabe {
+  font-family:"Scheherazade New","Amiri",serif;
+  font-size:2rem; font-weight:700; color:#b35c00;
+  line-height:1.9; text-align:right; direction:rtl;
+  margin-bottom:20px; padding:18px 20px; border-radius:12px;
+  background:#fff8ed; border:2px solid rgba(224,120,0,.3);
+}
+
+.bm-section-lbl {
+  font-size:.62rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px;
+  margin-bottom:7px; display:flex; align-items:center; gap:6px;
+}
+.bm-section-lbl.lbl-ar { color:#b35c00; }
+.bm-section-lbl.lbl-ph { color:#006b5e; }
+.bm-section-lbl.lbl-fr { color:#6b21a8; }
+
+/* Phonétique */
+.bm-phonetic {
+  font-size:1rem; font-style:italic; color:#006b5e;
+  line-height:1.7; margin-bottom:18px; padding:13px 16px;
+  background:#edf9f7; border-radius:10px;
+  border-left:4px solid #00a896;
+}
+/* Français */
+.bm-fr {
+  font-size:.95rem; color:#6b21a8;
+  line-height:1.75; padding:14px 16px; border-radius:10px;
+  background:#f7f0ff; border:1.5px solid rgba(107,33,168,.2);
+}
+
+/* Navigation modal */
+.bm-nav { display:flex; justify-content:space-between; gap:10px; margin-top:20px; padding-top:16px; border-top:1.5px solid var(--b2); }
+.bm-nav-btn {
+  display:flex; align-items:center; gap:7px;
+  padding:8px 16px; border-radius:22px; border:1.5px solid var(--b1);
+  background:var(--bg); color:var(--t2); font-family:"Nunito",sans-serif;
+  font-size:.8rem; font-weight:700; cursor:pointer;
+  transition:all .15s;
+}
+.bm-nav-btn:hover { background:var(--amber-bg); border-color:var(--amber); color:var(--amber); }
+.bm-nav-btn:disabled { opacity:.3; cursor:not-allowed; }
+
+/* Skeleton */
+.bq-skeleton { border-radius:var(--r-lg); }
+
+@media(max-width:900px){ .bouqalla-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));} }
+@media(max-width:580px){ .bouqalla-grid{grid-template-columns:1fr;} .bq-arabe{font-size:1.15rem;} .bm-arabe{font-size:1.5rem;} .bm-wrap{padding:24px 18px 20px;} }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Émissions — Radio Chaâbi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="./shared.css">
+  <link rel="stylesheet" href="./emissions.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <div class="page-hero page-hero-radio">
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <div class="page-hero-tag"><i class="fa-solid fa-signal"></i> En ondes</div>
+        <h1 class="page-hero-title">Nos <span>Émissions</span></h1>
+        <p class="page-hero-sub">Toutes les émissions radio de la chaîne Chaâbi</p>
+      </div>
+      <div style="text-align:right">
+        <div class="page-hero-count" id="heroCount">…</div>
+        <div class="page-hero-count-lbl">Émissions</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="toolbar-inner">
+      <div class="filter-pills" id="catPills">
+        <button class="pill active" data-cat="">Toutes</button>
+        <button class="pill" data-cat="1">Chaâbi</button>
+        <button class="pill" data-cat="3">Émissions</button>
+        <button class="pill" data-cat="4">Andalou</button>
+        <button class="pill" data-cat="6">Hawzi</button>
+      </div>
+      <select class="sort-select" id="sortSelect">
+        <option value="recent">Plus récentes</option>
+        <option value="views">Plus vues</option>
+        <option value="likes">Plus aimées</option>
+        <option value="numero">Numéro</option>
+      </select>
+      <div class="view-toggle">
+        <button class="view-btn grid-view-btn active" data-view="cards" title="Cartes"><i class="fa-solid fa-grip"></i></button>
+        <button class="view-btn grid-view-btn" data-view="list" title="Liste"><i class="fa-solid fa-list"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="container">
+      <div class="inline-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchBox" placeholder="Rechercher une émission…">
+        <span id="searchClear" class="search-clear" style="display:none"><i class="fa-solid fa-xmark"></i></span>
+      </div>
+      <div id="emissionsGrid" class="emissions-grid reveal"></div>
+      <div id="pagination" class="pagination"></div>
+    </div>
+  </div>
+
+  <footer id="footer"></footer>
+  <script src="./shared.js"></script>
+  <script src="./emissions.js"></script>
+</body>
+</html>

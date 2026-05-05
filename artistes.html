@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artistes — Radio Chaâbi</title>
+  <meta name="description" content="Découvrez tous les artistes chaâbi algériens de Radio Chaâbi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="./shared.css">
+  <link rel="stylesheet" href="./artistes.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <div class="page-hero-tag"><i class="fa-solid fa-user-music"></i> Répertoire</div>
+        <h1 class="page-hero-title">Nos <span>Artistes</span></h1>
+        <p class="page-hero-sub">Tous les grands noms de la musique chaâbi algérienne</p>
+      </div>
+      <div style="text-align:right">
+        <div class="page-hero-count" id="heroCount">…</div>
+        <div class="page-hero-count-lbl">Artistes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="toolbar-inner">
+      <div class="filter-pills" id="catPills">
+        <button class="pill active" data-cat="">Tous</button>
+        <button class="pill" data-cat="1">Chaâbi</button>
+        <button class="pill" data-cat="4">Andalou</button>
+        <button class="pill" data-cat="6">Hawzi</button>
+        <button class="pill" data-cat="7">Malouf</button>
+        <button class="pill" data-cat="2">Fêtes</button>
+      </div>
+      <select class="sort-select" id="sortSelect">
+        <option value="views">Plus vus</option>
+        <option value="likes">Plus aimés</option>
+        <option value="nom">Alphabétique</option>
+      </select>
+      <div class="view-toggle">
+        <button class="view-btn grid-view-btn active" data-view="grid" title="Grille"><i class="fa-solid fa-grip"></i></button>
+        <button class="view-btn grid-view-btn" data-view="list" title="Liste"><i class="fa-solid fa-list"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-section">
+    <div class="container">
+      <!-- Search inline -->
+      <div class="inline-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchBox" placeholder="Rechercher un artiste…" autocomplete="off">
+        <span id="searchClear" class="search-clear" style="display:none"><i class="fa-solid fa-xmark"></i></span>
+      </div>
+      <div id="artistsGrid" class="artists-grid reveal"></div>
+      <div id="pagination" class="pagination"></div>
+    </div>
+  </div>
+
+  <!-- MODAL DÉTAIL ARTISTE -->
+  <div class="modal-overlay" id="artistModal">
+    <div class="modal" id="artistModalBox">
+      <button class="modal-close" id="artistModalClose"><i class="fa-solid fa-xmark"></i></button>
+      <div id="artistModalContent"></div>
+    </div>
+  </div>
+
+  <footer id="footer"></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" defer></script>
+  <script src="./shared.js"></script>
+  <script src="./artistes.js"></script>
+</body>
+</html>

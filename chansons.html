@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chansons — Radio Chaâbi</title>
+  <meta name="description" content="Toutes les chansons chaâbi algériennes sur Radio Chaâbi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="./shared.css">
+  <link rel="stylesheet" href="./chansons.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <div class="page-hero-tag"><i class="fa-solid fa-headphones"></i> Catalogue</div>
+        <h1 class="page-hero-title">Toutes les <span>Chansons</span></h1>
+        <p class="page-hero-sub">Le catalogue complet de la musique chaâbi algérienne</p>
+      </div>
+      <div style="text-align:right">
+        <div class="page-hero-count" id="heroCount">…</div>
+        <div class="page-hero-count-lbl">Chansons</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="toolbar-inner">
+      <div class="filter-pills" id="catPills">
+        <button class="pill active" data-cat="">Toutes</button>
+        <button class="pill" data-cat="1">Chaâbi</button>
+        <button class="pill" data-cat="4">Andalou</button>
+        <button class="pill" data-cat="6">Hawzi</button>
+        <button class="pill" data-cat="7">Malouf</button>
+        <button class="pill" data-cat="2">Fêtes</button>
+      </div>
+      <select class="sort-select" id="sortSelect">
+        <option value="views">Plus écoutées</option>
+        <option value="likes">Plus aimées</option>
+        <option value="recent">Plus récentes</option>
+        <option value="titre">A → Z</option>
+      </select>
+      <div class="view-toggle">
+        <button class="view-btn grid-view-btn active" data-view="grid" title="Grille"><i class="fa-solid fa-grip"></i></button>
+        <button class="view-btn grid-view-btn" data-view="list" title="Liste"><i class="fa-solid fa-list"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="container">
+      <div class="inline-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchBox" placeholder="Rechercher une chanson ou un artiste…">
+        <span id="searchClear" class="search-clear" style="display:none"><i class="fa-solid fa-xmark"></i></span>
+      </div>
+      <div id="songsGrid" class="songs-grid reveal"></div>
+      <div id="pagination" class="pagination"></div>
+    </div>
+  </div>
+
+  <footer id="footer"></footer>
+  <script src="./shared.js"></script>
+  <script src="./chansons.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bouqalla — Radio Chaâbi</title>
+  <meta name="description" content="Les bouqallates, proverbes et dictons de la tradition algérienne — Radio Chaâbi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Scheherazade+New:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="./shared.css">
+  <link rel="stylesheet" href="./bouqalla.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <!-- HERO -->
+  <div class="page-hero page-hero-bouqalla">
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <div class="page-hero-tag"><i class="fa-solid fa-scroll"></i> Patrimoine oral</div>
+        <h1 class="page-hero-title">La <span>Bouqalla</span></h1>
+        <p class="page-hero-sub">Proverbes, devises et sentences de la tradition algérienne</p>
+      </div>
+      <div style="text-align:right">
+        <div class="page-hero-count" id="heroCount">…</div>
+        <div class="page-hero-count-lbl">Bouqallates</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="toolbar-inner">
+      <!-- Aucun filtre catégorie — juste la recherche et le mode affichage -->
+      <div class="filter-pills" id="langPills">
+        <button class="pill active" data-lang="all">Tout</button>
+        <button class="pill" data-lang="ar"><i class="fa-solid fa-star-and-crescent"></i> Arabe</button>
+        <button class="pill" data-lang="ph"><i class="fa-solid fa-volume-high"></i> Phonétique</button>
+        <button class="pill" data-lang="fr"><i class="fa-solid fa-flag"></i> Français</button>
+      </div>
+      <div class="view-toggle">
+        <button class="view-btn active" data-view="cards" title="Cartes"><i class="fa-solid fa-id-card"></i></button>
+        <button class="view-btn" data-view="table" title="Tableau"><i class="fa-solid fa-table-list"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-section">
+    <div class="container">
+      <!-- Recherche -->
+      <div class="inline-search" style="max-width:560px">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchBox"
+               placeholder="Rechercher une bouqalla en arabe, phonétique ou français…"
+               autocomplete="off">
+        <span id="searchClear" class="search-clear" style="display:none">
+          <i class="fa-solid fa-xmark"></i>
+        </span>
+      </div>
+
+      <!-- Indicateur de langue affichée -->
+      <div id="langIndicator" class="lang-indicator"></div>
+
+      <!-- Grille / tableau -->
+      <div id="bouqallaGrid" class="bouqalla-grid reveal"></div>
+
+      <!-- Pagination -->
+      <div id="pagination" class="pagination"></div>
+    </div>
+  </div>
+
+  <!-- MODAL détail d'une bouqalla -->
+  <div class="modal-overlay" id="bModal">
+    <div class="modal" id="bModalBox">
+      <button class="modal-close" id="bModalClose"><i class="fa-solid fa-xmark"></i></button>
+      <div id="bModalContent"></div>
+    </div>
+  </div>
+
+  <footer id="footer"></footer>
+  <script src="./shared.js"></script>
+  <script src="./bouqalla.js"></script>
+</body>
+</html>

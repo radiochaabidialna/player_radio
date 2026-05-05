@@ -1,0 +1,304 @@
+/* ════════════════════════════════════════════
+   INTERVIEWS.CSS — Design épuré
+   Carte simple : image portrait + corps texte
+   Pas d'avatar circle, pas d'overlay complexe
+════════════════════════════════════════════ */
+
+.page-hero-interview {
+  background: linear-gradient(145deg, var(--nav) 0%, var(--nav-2) 100%);
+}
+
+/* ── GRILLE ── */
+.interviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+}
+.interviews-grid.list-view {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+/* ══════════════════════════════════
+   CARTE INTERVIEW — épurée
+   Image 4:3 → visage bien visible
+   Corps blanc en dessous
+══════════════════════════════════ */
+.interview-card {
+  background: var(--card);
+  border: 1.5px solid var(--b1);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--sh-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.interview-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sh);
+  border-color: var(--amber);
+}
+.interview-card.playing {
+  border-color: var(--amber) !important;
+  box-shadow: 0 0 0 3px var(--amber-ring) !important;
+}
+
+/* ── IMAGE : ratio 4:3, face visible en haut ── */
+.iv-thumb {
+  position: relative;
+  width: 100%;
+  /* 4:3 = plus de hauteur qu'un 16:9, visage mieux cadré */
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--bg-2);
+  flex-shrink: 0;
+}
+.iv-thumb-img {
+  /* L'image principale remplit tout le thumb */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* "top" = commence depuis le haut → visage toujours visible */
+  object-position: center top;
+  transition: transform .4s;
+  display: block;
+}
+.interview-card:hover .iv-thumb-img { transform: scale(1.05); }
+
+/* Dégradé subtil en bas pour lisibilité badges */
+.iv-thumb-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.0) 60%,
+    rgba(0,0,0,.35) 100%
+  );
+  pointer-events: none;
+}
+
+/* Badge catégorie — en haut à gauche */
+.iv-cat {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: .6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--nav);
+  color: var(--nav-acc);
+  border: 1px solid var(--nav-acc);
+}
+
+/* Badge date — en haut à droite */
+.iv-date {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: .62rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.92);
+  color: var(--t2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Badge "En cours" remplace la date */
+.iv-playing-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: .62rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: var(--amber);
+  color: #fff;
+  display: none;
+  align-items: center;
+  gap: 5px;
+}
+.interview-card.playing .iv-playing-badge { display: flex; }
+.interview-card.playing .iv-date          { display: none; }
+
+/* EQ animé */
+.eq-xs { display:flex; align-items:flex-end; gap:1px; height:8px; }
+.eq-xs span { width:2px; border-radius:1px; background:#fff; animation:eq-x .7s ease-in-out infinite alternate; }
+.eq-xs span:nth-child(1){height:3px;animation-delay:0s}
+.eq-xs span:nth-child(2){height:7px;animation-delay:.2s}
+.eq-xs span:nth-child(3){height:5px;animation-delay:.1s}
+@keyframes eq-x{from{transform:scaleY(.3)}to{transform:scaleY(1)}}
+
+/* Bouton play centré — au survol */
+.iv-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30,8,0,.18);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.interview-card:hover .iv-play-overlay { opacity: 1; }
+.iv-play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--sh-amb);
+  transition: transform .15s;
+}
+.iv-play-btn:hover { transform: scale(1.08); }
+
+/* ── CORPS DE LA CARTE ── */
+.iv-body {
+  padding: 12px 14px 13px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.iv-name {
+  font-family: "Cinzel", serif;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--t1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+.iv-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+.iv-cat-inline {
+  font-size: .62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .7px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+.iv-date-inline {
+  font-size: .68rem;
+  color: var(--t3);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Pied de carte : stats + play */
+.iv-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px 11px;
+  border-top: 1px solid var(--b2);
+  gap: 6px;
+}
+.iv-stats { display: flex; gap: 5px; }
+.iv-stat-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: .7rem;
+  padding: 4px 9px;
+  border-radius: 8px;
+  border: 1.5px solid var(--b1);
+  background: var(--bg);
+  color: var(--t3);
+  font-family: "Nunito", sans-serif;
+  cursor: pointer;
+  transition: all .15s;
+}
+.iv-stat-btn:hover  { border-color: var(--amber); color: var(--amber); background: var(--amber-bg); }
+.iv-stat-btn.liked  { color: var(--red);  border-color: rgba(192,57,43,.3); background: var(--red-bg); }
+.iv-stat-btn.viewed { color: var(--teal); border-color: rgba(10,124,110,.3); background: var(--teal-bg); }
+
+.iv-play-small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: none;
+  color: #fff;
+  font-size: .76rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--sh-amb);
+  transition: transform .15s, background .15s;
+}
+.iv-play-small:hover { transform: scale(1.1); background: var(--amber-h); }
+.interview-card.playing .iv-play-small { background: var(--teal); }
+
+/* ══════════════════════════════════
+   VUE LISTE — horizontal propre
+══════════════════════════════════ */
+.interviews-grid.list-view .interview-card {
+  flex-direction: row;
+  align-items: center;
+  border-radius: var(--r);
+}
+.interviews-grid.list-view .interview-card:hover {
+  transform: translateX(5px) translateY(0);
+}
+/* Thumb réduit à taille fixe en liste */
+.interviews-grid.list-view .iv-thumb {
+  width: 100px;
+  min-width: 100px;
+  height: 75px;
+  aspect-ratio: unset;
+  border-radius: var(--r) 0 0 var(--r);
+}
+.interviews-grid.list-view .iv-play-overlay { opacity: 1; border-radius: var(--r) 0 0 var(--r); }
+.interviews-grid.list-view .iv-play-btn { width: 32px; height: 32px; font-size: .76rem; }
+/* Corps en liste */
+.interviews-grid.list-view .iv-body {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+}
+.interviews-grid.list-view .iv-meta { flex-wrap: nowrap; }
+.interviews-grid.list-view .iv-name { flex: 1; font-size: .86rem; }
+/* Footer en liste */
+.interviews-grid.list-view .iv-footer {
+  border-top: none;
+  padding: 0 12px;
+  flex-shrink: 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .interviews-grid { grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 14px; }
+}
+@media (max-width: 700px) {
+  .interviews-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+@media (max-width: 420px) {
+  .interviews-grid { grid-template-columns: 1fr; }
+}
